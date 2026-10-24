@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.thuchanhandroid.R
 import com.example.thuchanhandroid.data.pref.SessionManager
+import com.example.thuchanhandroid.ui.employee.salary.MySalaryActivity
 import com.example.thuchanhandroid.ui.login.LoginActivity
 import com.google.android.material.button.MaterialButton
 
@@ -18,6 +19,10 @@ class EmployeeDashboardActivity : AppCompatActivity() {
         val session = SessionManager(this)
         findViewById<TextView>(R.id.tvWelcome).text =
             getString(R.string.welcome_employee, session.username.orEmpty())
+
+        findViewById<MaterialButton>(R.id.btnMySalary).setOnClickListener {
+            startActivity(Intent(this, MySalaryActivity::class.java))
+        }
 
         findViewById<MaterialButton>(R.id.btnLogout).setOnClickListener {
             session.clear()
