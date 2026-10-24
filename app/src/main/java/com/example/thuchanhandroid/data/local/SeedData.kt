@@ -2,6 +2,7 @@ package com.example.thuchanhandroid.data.local
 
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.thuchanhandroid.utils.Constants
+import com.example.thuchanhandroid.utils.DateTimeUtils
 import com.example.thuchanhandroid.utils.PasswordHasher
 
 object SeedData {
@@ -23,12 +24,13 @@ object SeedData {
                 "(2, 'NV002', 'Tran Thi B', 'ttb@gmail.com', '0912345678', 35000, 3)"
         )
 
+        val today = DateTimeUtils.today()
         db.execSQL(
             "INSERT INTO work_logs (employee_id, work_date, check_in_time, check_out_time, total_hours, status) VALUES " +
                 "(1, strftime('%Y-%m-%d', 'now', '-2 days'), '08:00', '17:00', 8.0, '${Constants.WorkLogStatus.COMPLETED}'), " +
                 "(1, strftime('%Y-%m-%d', 'now', '-1 day'), '08:00', '17:00', 8.0, '${Constants.WorkLogStatus.COMPLETED}'), " +
                 "(2, strftime('%Y-%m-%d', 'now', '-1 day'), '08:30', '17:30', 8.0, '${Constants.WorkLogStatus.COMPLETED}'), " +
-                "(1, strftime('%Y-%m-%d', 'now'), '08:00', '16:30', 8.5, '${Constants.WorkLogStatus.COMPLETED}')"
+                "(1, '$today', '08:00', '16:30', 8.5, '${Constants.WorkLogStatus.COMPLETED}')"
         )
     }
 }

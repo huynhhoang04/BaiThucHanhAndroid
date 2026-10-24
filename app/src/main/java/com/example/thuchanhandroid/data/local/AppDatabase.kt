@@ -21,7 +21,7 @@ import com.example.thuchanhandroid.data.local.entity.WorkLogEntity
         WorkLogEntity::class,
         SalaryEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
