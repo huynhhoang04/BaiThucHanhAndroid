@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +17,7 @@ import com.example.thuchanhandroid.R
 import com.example.thuchanhandroid.data.local.AppDatabase
 import com.example.thuchanhandroid.data.local.entity.EmployeeEntity
 import com.example.thuchanhandroid.data.repository.EmployeeRepositoryImpl
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class EmployeeListActivity : AppCompatActivity(), EmployeeContract.View {
@@ -33,12 +33,12 @@ class EmployeeListActivity : AppCompatActivity(), EmployeeContract.View {
         val repository = EmployeeRepositoryImpl(database)
         presenter = EmployeePresenter(this, repository)
 
-        val btnBack: ImageButton = findViewById(R.id.btnBack)
+        val toolbar: MaterialToolbar = findViewById(R.id.toolbar)
         val rvList: RecyclerView = findViewById(R.id.rvEmployeeList)
         val edtSearch: EditText = findViewById(R.id.edtSearchEmployee)
         val fabAdd: FloatingActionButton = findViewById(R.id.fabAddEmployee)
 
-        btnBack.setOnClickListener {
+        toolbar.setNavigationOnClickListener {
             finish()
         }
 
