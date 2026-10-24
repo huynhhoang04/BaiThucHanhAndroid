@@ -13,6 +13,7 @@ import com.example.thuchanhandroid.R
 import com.example.thuchanhandroid.data.pref.SessionManager
 import com.example.thuchanhandroid.ui.employee.salary.MySalaryActivity
 import com.example.thuchanhandroid.ui.login.LoginActivity
+import com.example.thuchanhandroid.utils.DateTimeUtils
 import com.google.android.material.button.MaterialButton
 
 class EmployeeDashboardActivity : AppCompatActivity() {
@@ -62,7 +63,7 @@ class EmployeeDashboardActivity : AppCompatActivity() {
         }
 
         viewModel.monthlyHours.observe(this) { hours ->
-            tvMonthlyHours.text = "Tổng giờ làm tháng này: $hours h"
+            tvMonthlyHours.text = "Tổng giờ làm tháng này: ${DateTimeUtils.formatHoursToReadable(hours)}"
         }
 
         findViewById<MaterialButton>(R.id.btnMySalary).setOnClickListener {

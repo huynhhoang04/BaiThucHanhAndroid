@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thuchanhandroid.R
 import com.example.thuchanhandroid.data.local.entity.WorkLogEntity
+import com.example.thuchanhandroid.utils.DateTimeUtils
 
 class WorkLogAdapter(private var workLogs: List<WorkLogEntity>) :
     RecyclerView.Adapter<WorkLogAdapter.WorkLogViewHolder>() {
@@ -30,7 +31,7 @@ class WorkLogAdapter(private var workLogs: List<WorkLogEntity>) :
         holder.tvDate.text = "Ngày: ${log.workDate}"
         holder.tvCheckIn.text = "Vào: ${log.checkInTime ?: "--:--"}"
         holder.tvCheckOut.text = "Ra: ${log.checkOutTime ?: "--:--"}"
-        holder.tvTotalHours.text = "Số giờ: ${log.totalHours}h"
+        holder.tvTotalHours.text = "Số giờ: ${DateTimeUtils.formatHoursToReadable(log.totalHours)}"
         holder.tvStatus.text = "Trạng thái: ${log.status}"
     }
 

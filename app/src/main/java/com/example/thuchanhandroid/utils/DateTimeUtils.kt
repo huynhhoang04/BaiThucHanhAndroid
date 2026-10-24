@@ -8,7 +8,7 @@ import java.util.Locale
 object DateTimeUtils {
 
     private const val DATE_PATTERN = "yyyy-MM-dd"
-    private const val TIME_PATTERN = "HH:mm"
+    private const val TIME_PATTERN = "HH:mm:ss"
 
     fun today(): String = SimpleDateFormat(DATE_PATTERN, Locale.getDefault()).format(Date())
 
@@ -33,5 +33,12 @@ object DateTimeUtils {
         val lastDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
         val to = String.format(Locale.US, "%04d-%02d-%02d", year, month, lastDay)
         return from to to
+    }
+
+    fun formatHoursToReadable(totalHours: Double): String {
+        val totalMinutes = (totalHours * 60).toInt()
+        val hours = totalMinutes / 60
+        val minutes = totalMinutes % 60
+        return if (hours > 0) "$hours giờ $minutes phút" else "$minutes phút"
     }
 }
