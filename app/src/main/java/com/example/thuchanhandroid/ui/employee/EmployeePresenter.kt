@@ -55,6 +55,10 @@ class EmployeePresenter(
             view.showError("Email không đúng định dạng!")
             return
         }
+        if (phone.isNotBlank() && !Patterns.PHONE.matcher(phone).matches()) {
+            view.showError("Số điện thoại không đúng định dạng!")
+            return
+        }
         val rate = hourlyRateStr.toDoubleOrNull()
         if (rate == null || rate <= 0) {
             view.showError("Lương theo giờ phải lớn hơn 0!")
@@ -95,6 +99,10 @@ class EmployeePresenter(
         }
         if (email.isNotBlank() && !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             view.showError("Email không đúng định dạng!")
+            return
+        }
+        if (phone.isNotBlank() && !Patterns.PHONE.matcher(phone).matches()) {
+            view.showError("Số điện thoại không đúng định dạng!")
             return
         }
         val rate = hourlyRateStr.toDoubleOrNull()
