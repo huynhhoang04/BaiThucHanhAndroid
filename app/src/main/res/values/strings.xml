@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">ThucHanhAndroid</string>
+    <string name="login_title">Đăng nhập</string>
+    <string name="hint_username">Tên đăng nhập</string>
+    <string name="hint_password">Mật khẩu</string>
+    <string name="btn_login">Đăng nhập</string>
+    <string name="btn_logout">Đăng xuất</string>
+    <string name="welcome_admin">Xin chào, %1$s (Quản trị viên)</string>
+    <string name="welcome_employee">Xin chào, %1$s (Nhân viên)</string>
+    <string name="admin_dashboard_note">Quản lý nhân viên và bảng lương sẽ được hoàn thiện ở các bước tiếp theo.</string>
+    <string name="employee_dashboard_note">Chức năng check-in/check-out và lịch sử điểm danh sẽ được hoàn thiện ở các bước tiếp theo.</string>
 </resources>
