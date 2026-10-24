@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thuchanhandroid.R
 import com.example.thuchanhandroid.data.pref.SessionManager
+import com.example.thuchanhandroid.ui.employee.salary.MySalaryActivity
 import com.example.thuchanhandroid.ui.login.LoginActivity
 import com.google.android.material.button.MaterialButton
 
@@ -62,6 +63,10 @@ class EmployeeDashboardActivity : AppCompatActivity() {
 
         viewModel.monthlyHours.observe(this) { hours ->
             tvMonthlyHours.text = "Tổng giờ làm tháng này: $hours h"
+        }
+
+        findViewById<MaterialButton>(R.id.btnMySalary).setOnClickListener {
+            startActivity(Intent(this, MySalaryActivity::class.java))
         }
 
         findViewById<MaterialButton>(R.id.btnLogout).setOnClickListener {
