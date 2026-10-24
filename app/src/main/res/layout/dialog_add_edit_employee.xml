@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    tools:ignore="HardcodedText,Autofill">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +20,6 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <!-- Ô nhập Mã NV -->
         <EditText
             android:id="@+id/edtEmpCode"
             android:layout_width="match_parent"
@@ -27,7 +28,6 @@
             android:hint="Mã nhân viên (VD: NV01)"
             android:inputType="textCapCharacters" />
 
-        <!-- Ô nhập Họ Tên -->
         <EditText
             android:id="@+id/edtEmpName"
             android:layout_width="match_parent"
@@ -36,7 +36,6 @@
             android:hint="Họ và tên"
             android:inputType="textPersonName" />
 
-        <!-- Ô nhập Email -->
         <EditText
             android:id="@+id/edtEmpEmail"
             android:layout_width="match_parent"
@@ -45,7 +44,6 @@
             android:hint="Địa chỉ Email"
             android:inputType="textEmailAddress" />
 
-        <!-- Ô nhập SĐT -->
         <EditText
             android:id="@+id/edtEmpPhone"
             android:layout_width="match_parent"
@@ -54,16 +52,38 @@
             android:hint="Số điện thoại"
             android:inputType="phone" />
 
-        <!-- Ô nhập Lương/giờ (hourlyRate > 0) -->
         <EditText
             android:id="@+id/edtEmpHourlyRate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Lương mỗi giờ (VNĐ, VD: 50000)"
+            android:hint="Lương mỗi giờ (VNĐ)"
             android:inputType="numberDecimal" />
 
-        <!-- Cặp nút bấm Lưu / Hủy -->
+        <!-- Khu vực tạo tài khoản cho nhân viên mới -->
+        <LinearLayout
+            android:id="@+id/layoutAccountInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/edtEmpUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="Tên đăng nhập hệ thống"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/edtEmpPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="Mật khẩu"
+                android:inputType="textPassword" />
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -73,7 +93,7 @@
 
             <Button
                 android:id="@+id/btnCancelDialog"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
+                style="?attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Hủy" />

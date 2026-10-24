@@ -29,6 +29,9 @@
             android:name=".ui.admin.AdminDashboardActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.employee.EmployeeListActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.employee.EmployeeDashboardActivity"
             android:exported="false" />
     </application>

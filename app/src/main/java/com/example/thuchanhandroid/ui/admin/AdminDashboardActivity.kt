@@ -1,28 +1,72 @@
 package com.example.thuchanhandroid.ui.admin
 
+import com.example.thuchanhandroid.ui.employee.EmployeeListActivity
+
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.thuchanhandroid.R
+import com.example.thuchanhandroid.data.local.AppDatabase
 import com.example.thuchanhandroid.data.pref.SessionManager
-import com.example.thuchanhandroid.ui.login.LoginActivity
-import com.google.android.material.button.MaterialButton
+import com.example.thuchanhandroid.utils.DateTimeUtils
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class AdminDashboardActivity : AppCompatActivity() {
+
+    private lateinit var sessionManager: SessionManager
+    private lateinit var tvTotalEmployees: TextView
+    private lateinit var tvTotalWorkHoursToday: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_dashboard)
 
-        val session = SessionManager(this)
-        findViewById<TextView>(R.id.tvWelcome).text =
-            getString(R.string.welcome_admin, session.username.orEmpty())
+        sessionManager = SessionManager(this)
 
-        findViewById<MaterialButton>(R.id.btnLogout).setOnClickListener {
-            session.clear()
-            startActivity(Intent(this, LoginActivity::class.java))
+        tvTotalEmployees = findViewById(R.id.tvTotalEmployees)
+        tvTotalWorkHoursToday = findViewById(R.id.tvTotalWorkHoursToday)
+        val btnNavEmployee: Button = findViewById(R.id.btnNavEmployeeManagement)
+        val btnNavSalary: Button = findViewById(R.id.btnNavSalaryManagement)
+        val btnLogout: Button = findViewById(R.id.btnLogout)
+
+        btnNavEmployee.setOnClickListener {
+            val intent = Intent(this, EmployeeListActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnNavSalary.setOnClickListener {
+            Toast.makeText(this, "Chức năng do Thành viên 4 phụ trách", Toast.LENGTH_SHORT).show()
+        }
+
+        btnLogout.setOnClickListener {
+            sessionManager.clear()
+            Toast.makeText(this, "Đã đăng xuất", Toast.LENGTH_SHORT).show()
             finish()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadDashboardStats()
+    }
+
+    private fun loadDashboardStats() {
+        lifecycleScope.launch {
+            val db = AppDatabase.getInstance(this@AdminDashboardActivity)
+            val (employeeCount, hoursToday) = withContext(Dispatchers.IO) {
+                val count = db.employeeDao().getAll().size
+                val today = DateTimeUtils.today()
+                val hours = db.workLogDao().sumHoursBetween(0, today, today)
+                Pair(count, hours)
+            }
+            tvTotalEmployees.text = employeeCount.toString()
+            tvTotalWorkHoursToday.text = String.format("%.1fh", hoursToday)
         }
     }
 }
