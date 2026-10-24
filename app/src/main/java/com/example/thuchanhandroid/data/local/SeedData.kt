@@ -7,6 +7,23 @@ import com.example.thuchanhandroid.utils.PasswordHasher
 
 object SeedData {
 
+    fun checkAndPopulate(db: SupportSQLiteDatabase) {
+        try {
+            val cursor = db.query("SELECT COUNT(*) FROM accounts")
+            var count = 0
+            if (cursor.moveToFirst()) {
+                count = cursor.getInt(0)
+            }
+            cursor.close()
+
+            if (count == 0) {
+                populate(db)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
     fun populate(db: SupportSQLiteDatabase) {
         val adminPassword = PasswordHasher.hash("admin123")
         val employeePassword = PasswordHasher.hash("123456")

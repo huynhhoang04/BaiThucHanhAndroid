@@ -55,7 +55,13 @@ abstract class AppDatabase : RoomDatabase() {
                 .fallbackToDestructiveMigration(true)
                 .addCallback(object : RoomDatabase.Callback() {
                     override fun onCreate(db: SupportSQLiteDatabase) {
+                        super.onCreate(db)
                         SeedData.populate(db)
+                    }
+
+                    override fun onOpen(db: SupportSQLiteDatabase) {
+                        super.onOpen(db)
+                        SeedData.checkAndPopulate(db)
                     }
                 })
                 .build()
