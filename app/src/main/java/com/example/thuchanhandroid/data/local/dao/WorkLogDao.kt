@@ -30,6 +30,11 @@ interface WorkLogDao {
     )
     suspend fun sumHoursBetween(employeeId: Long, from: String, to: String): Double
 
+    @Query(
+        "SELECT COALESCE(SUM(total_hours), 0) FROM work_logs WHERE work_date BETWEEN :from AND :to"
+    )
+    suspend fun sumTotalHoursBetween(from: String, to: String): Double
+
     @Query("SELECT * FROM work_logs WHERE employee_id = :employeeId ORDER BY work_date DESC")
     suspend fun findByEmployee(employeeId: Long): List<WorkLogEntity>
 }

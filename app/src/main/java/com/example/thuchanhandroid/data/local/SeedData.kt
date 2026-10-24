@@ -27,7 +27,8 @@ object SeedData {
             "INSERT INTO work_logs (employee_id, work_date, check_in_time, check_out_time, total_hours, status) VALUES " +
                 "(1, strftime('%Y-%m-%d', 'now', '-2 days'), '08:00', '17:00', 8.0, '${Constants.WorkLogStatus.COMPLETED}'), " +
                 "(1, strftime('%Y-%m-%d', 'now', '-1 day'), '08:00', '17:00', 8.0, '${Constants.WorkLogStatus.COMPLETED}'), " +
-                "(2, strftime('%Y-%m-%d', 'now', '-1 day'), '08:30', '17:30', 8.0, '${Constants.WorkLogStatus.COMPLETED}')"
+                "(2, strftime('%Y-%m-%d', 'now', '-1 day'), '08:30', '17:30', 8.0, '${Constants.WorkLogStatus.COMPLETED}'), " +
+                "(1, strftime('%Y-%m-%d', 'now'), '08:00', '16:30', 8.5, '${Constants.WorkLogStatus.COMPLETED}')"
         )
     }
 }

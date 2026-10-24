@@ -65,7 +65,7 @@ class AdminDashboardActivity : AppCompatActivity() {
             val (employeeCount, hoursToday) = withContext(Dispatchers.IO) {
                 val count = db.employeeDao().getAll().size
                 val today = DateTimeUtils.today()
-                val hours = db.workLogDao().sumHoursBetween(0, today, today)
+                val hours = db.workLogDao().sumTotalHoursBetween(today, today)
                 Pair(count, hours)
             }
             tvTotalEmployees.text = employeeCount.toString()
