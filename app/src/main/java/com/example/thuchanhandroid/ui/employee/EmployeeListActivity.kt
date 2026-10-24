@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -32,9 +33,14 @@ class EmployeeListActivity : AppCompatActivity(), EmployeeContract.View {
         val repository = EmployeeRepositoryImpl(database)
         presenter = EmployeePresenter(this, repository)
 
+        val btnBack: ImageButton = findViewById(R.id.btnBack)
         val rvList: RecyclerView = findViewById(R.id.rvEmployeeList)
         val edtSearch: EditText = findViewById(R.id.edtSearchEmployee)
         val fabAdd: FloatingActionButton = findViewById(R.id.fabAddEmployee)
+
+        btnBack.setOnClickListener {
+            finish()
+        }
 
         adapter = EmployeeAdapter(
             employees = emptyList(),
