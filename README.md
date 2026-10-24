@@ -1,35 +1,3 @@
-# P2P File-Sharing System (BitTorrent Clone)
-
-Đây là dự án cuối kỳ môn Hệ thống phân tán (Distributed Systems) - Nhóm 3 người.
-Dự án là một hệ thống chia sẻ file ngang hàng (P2P) hoạt động tương tự như BitTorrent, bao gồm Tracker Server và các Peer Node.
-
-## Yêu cầu Hệ thống
-- C++17
-- CMake (>= 3.10)
-- SQLite3
-- OpenSSL
-- nlohmann_json
-- Crow (HTTP framework)
-- ncurses (cho giao diện TUI)
-
-## Hướng dẫn Build (Dành cho Dev)
-
-```bash
-mkdir -p build && cd build
-cmake ..
-make -j$(nproc)
-```
-
-Chạy toàn bộ Unit Tests:
-```bash
-cd build
-ctest --output-on-failure
-# Hoặc chạy trực tiếp file test:
-./tests/TestAll
-```
-
----
-
 ## 🚀 Hướng Dẫn Quy Trình Làm Việc Nhóm (Team Workflow)
 
 Vì dự án đang trong giai đoạn phát triển song song (Milestone 3, 4, 5...) và có 3 thành viên, chúng ta sẽ áp dụng **Git Flow cơ bản** để tránh việc code bị conflict hoặc ghi đè lên nhau.
