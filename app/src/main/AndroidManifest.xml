@@ -34,6 +34,12 @@
         <activity
             android:name=".ui.employee.EmployeeDashboardActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.employee.salary.MySalaryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.admin.salary.AdminSalaryActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

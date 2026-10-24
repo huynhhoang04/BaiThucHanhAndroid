@@ -12,7 +12,10 @@ import androidx.lifecycle.lifecycleScope
 import com.example.thuchanhandroid.R
 import com.example.thuchanhandroid.data.local.AppDatabase
 import com.example.thuchanhandroid.data.pref.SessionManager
+import com.example.thuchanhandroid.ui.admin.salary.AdminSalaryActivity
+import com.example.thuchanhandroid.ui.login.LoginActivity
 import com.example.thuchanhandroid.utils.DateTimeUtils
+import com.google.android.material.button.MaterialButton
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -41,12 +44,12 @@ class AdminDashboardActivity : AppCompatActivity() {
         }
 
         btnNavSalary.setOnClickListener {
-            Toast.makeText(this, "Chức năng do Thành viên 4 phụ trách", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, AdminSalaryActivity::class.java))
         }
 
         btnLogout.setOnClickListener {
             sessionManager.clear()
-            Toast.makeText(this, "Đã đăng xuất", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
     }
